@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multimedia Systems — Complete Summary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e8edf5;
+      --text-muted: #8b95a8;
+      --accent-1: #6366f1;
+      --accent-2: #06b6d4;
+      --accent-3: #f97316;
+      --accent-4: #ec4899;
+      --accent-5: #10b981;
+      --gradient-hero: linear-gradient(135deg, #6366f1 0%, #06b6d4 50%, #ec4899 100%);
+      --gradient-card-1: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.05));
+      --gradient-card-2: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(236, 72, 153, 0.05));
+      --gradient-card-3: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.05));
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --radius: 20px;
+      --nav-height: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(6, 182, 212, 0.12), transparent),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(236, 72, 153, 0.08), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Exam Section ── */
+    #exam-section {
+      padding: 40px 0 60px;
+      min-height: 100vh;
+    }
+
+    .exam-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .exam-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .exam-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exam-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .exam-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding: 16px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .progress-info {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .progress-info strong {
+      color: var(--text);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin: 0 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gradient-hero);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .question-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent-2);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-label:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .option-label.selected {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .option-label.correct {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.5);
+    }
+
+    .option-label.incorrect {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.5);
+    }
+
+    .option-input {
+      display: none;
+    }
+
+    .option-marker {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .option-label.selected .option-marker {
+      background: var(--accent-1);
+      border-color: var(--accent-1);
+    }
+
+    .option-label.correct .option-marker {
+      background: var(--accent-5);
+      border-color: var(--accent-5);
+    }
+
+    .option-label.incorrect .option-marker {
+      background: #ef4444;
+      border-color: #ef4444;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 1rem;
+    }
+
+    .exam-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .exam-btn {
+      padding: 14px 32px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .exam-btn-primary {
+      background: var(--gradient-hero);
+      color: #fff;
+    }
+
+    .exam-btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .exam-btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .exam-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .exam-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Results Section ── */
+    .results-section {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .results-section.show {
+      display: block;
+    }
+
+    .score-display {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .score-text {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .review-section {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .review-section h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .review-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .review-item.correct {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .review-item.incorrect {
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .review-question {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .review-answer {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .review-answer span {
+      font-weight: 600;
+    }
+
+    .review-answer.correct span {
+      color: var(--accent-5);
+    }
+
+    .review-answer.incorrect span {
+      color: #ef4444;
+    }
+
+    .exam-start-screen {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .exam-start-screen h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exam-start-screen p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .exam-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .exam-info-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .exam-info-item .number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .exam-info-item .label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 80px 0 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-badge span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent-5);
+      box-shadow: 0 0 12px var(--accent-5);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gradient {
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Chapter Sections ── */
+    .chapter {
+      padding: 80px 0 40px;
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .chapter-num {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .chapter-num.c1 { background: linear-gradient(135deg, #6366f1, #818cf8); }
+    .chapter-num.c2 { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+    .chapter-num.c3 { background: linear-gradient(135deg, #f97316, #fb923c); }
+    .chapter-num.c4 { background: linear-gradient(135deg, #ec4899, #f472b6); }
+    .chapter-num.c5 { background: linear-gradient(135deg, #10b981, #34d399); }
+    .chapter-num.c6 { background: linear-gradient(135deg, #a855f7, #c084fc); }
+
+    .chapter-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .chapter-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+    }
+
+    /* ── Cards Grid ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: transform 0.3s, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .card.g1::before { background: var(--gradient-card-1); }
+    .card.g2::before { background: var(--gradient-card-2); }
+    .card.g3::before { background: var(--gradient-card-3); }
+
+    .card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-icon.i1 { background: rgba(99, 102, 241, 0.2); }
+    .card-icon.i2 { background: rgba(6, 182, 212, 0.2); }
+    .card-icon.i3 { background: rgba(249, 115, 22, 0.2); }
+    .card-icon.i4 { background: rgba(236, 72, 153, 0.2); }
+    .card-icon.i5 { background: rgba(16, 185, 129, 0.2); }
+    .card-icon.i6 { background: rgba(168, 85, 247, 0.2); }
+
+    .card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p, .card ul {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .card ul li {
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 13px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-2);
+    }
+
+    .card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+    }
+
+    /* ── Comparison Table ── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th {
+      color: var(--text);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .compare-table td { color: var(--text-muted); }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    /* ── Team Cards ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-item {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .team-item strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .team-item span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Formula Box ── */
+    .formula {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #a5b4fc;
+      position: relative;
+      z-index: 1;
+      overflow-x: auto;
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 20px 0 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 60px 24px 40px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer strong {
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+      .chapter-header { flex-direction: column; gap: 12px; }
+      
+      .container { padding: 0 16px; }
+      .hero { padding: 40px 0 60px; }
+      .chapter { padding: 40px 0 24px; }
+      
+      .card { padding: 20px; }
+      .card h3 { font-size: 1rem; }
+      .card p, .card ul { font-size: 0.85rem; }
+      
+      .exam-container { padding: 0 16px; }
+      .question-card { padding: 20px; }
+      .question-text { font-size: 1rem; }
+      .option-label { padding: 12px 16px; }
+      .option-text { font-size: 0.9rem; }
+      
+      .exam-start-screen { padding: 40px 16px; }
+      .exam-info { grid-template-columns: 1fr; gap: 12px; }
+      .exam-info-item { padding: 16px; }
+      
+      .exam-btn { padding: 12px 24px; font-size: 0.9rem; }
+      .exam-controls { flex-direction: column; }
+      .exam-controls button { width: 100%; }
+    }
+
+    /* ── Auth Gate ── */
+    body.auth-locked { overflow: hidden; }
+
+    body.auth-locked #site-content {
+      visibility: hidden;
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+    }
+
+    #auth-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--bg);
+    }
+
+    #auth-gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.22), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(6, 182, 212, 0.15), transparent),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(236, 72, 153, 0.1), transparent);
+      pointer-events: none;
+    }
+
+    #auth-gate.hidden { display: none; }
+
+    .auth-card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 40px 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .auth-lock {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(6, 182, 212, 0.15));
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .auth-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .auth-card h2 span {
+      background: var(--gradient-hero);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .auth-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .auth-field {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .auth-field input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .auth-field input:focus {
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .auth-field input::placeholder { color: #5a6478; }
+
+    .auth-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      background: var(--gradient-hero);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .auth-btn:hover { transform: translateY(-1px); opacity: 0.95; }
+    .auth-btn:active { transform: translateY(0); }
+
+    .auth-error {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #f87171;
+      min-height: 20px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .auth-error.show { opacity: 1; }
+  </style>
+</head>
+<body class="auth-locked">
+
+  <div id="auth-gate">
+    <div class="auth-card">
+      <div class="auth-lock">🔒</div>
+      <h2><span>Rasha platform</span></h2>
+      <p>Enter the access password to view this summary.</p>
+      <form id="auth-form" autocomplete="off">
+        <div class="auth-field">
+          <input type="password" id="auth-input" placeholder="Password" required autofocus />
+        </div>
+        <button type="submit" class="auth-btn">Unlock</button>
+        <div class="auth-error" id="auth-error">Incorrect password. Please try again.</div>
+      </form>
+    </div>
+  </div>
+
+  <div id="site-content">
+  <!-- Hero -->
+  <header class="hero container">
+    <div class="hero-badge"><span></span> Complete Course Summary</div>
+    <h1>Multimedia <span class="gradient">Systems</span></h1>
+    <p>A FULL SUMMARY OF THE MULTIMEDIA PREPRATION FOR THE FINAL EXAM</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Chapters</div></div>
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Topics</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Media Types</div></div>
+    </div>
+  </header>
+
+  <!-- ═══ CHAPTER 1 ═══ -->
+  <section class="chapter container" id="ch1">
+    <div class="chapter-header reveal">
+      <div class="chapter-num c1">01</div>
+      <div>
+        <h2 class="chapter-title">Introduction to Multimedia Systems</h2>
+        <p class="chapter-desc">What multimedia is, its historical origin, human senses, applications, Flash basics, and design principles.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card g1 reveal">
+        <div class="card-icon i1">🎯</div>
+        <h3>What is Multimedia?</h3>
+        <p>Computer information represented using text, graphics, drawings, images, audio, video, and animation instead of traditional text-based information.</p>
+        <p><strong>Multi = many, more than one</strong></p>
+        <p><strong>Media = means by which information is communicated</strong></p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">📜</div>
+        <h3>Historical Origin - Vannevar Bush (1945)</h3>
+        <p>Proposed the Memex system after WWII with these ideas:</p>
+        <ul>
+          <li><strong>Microphotography:</strong> Documents reduced in size (e.g., entire Encyclopedia Britannica in matchbox size)</li>
+          <li><strong>Voice-Operated Typewriters:</strong> Speech-driven typing systems</li>
+          <li><strong>Automatic Transaction Processing:</strong> Automatic card selection and data reading</li>
+          <li><strong>Memex Desk:</strong> Desk-like machine with microfilm storage, projection surfaces, keyboard</li>
+          <li><strong>Associative Trails:</strong> Links connecting related documents (inspired hypertext, hyperlinks, WWW)</li>
+        </ul>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">👁️</div>
+        <h3>Multimedia and Human Senses</h3>
+        <p>Multimedia exploits multiple human senses:</p>
+        <ul>
+          <li><strong>Sight:</strong> Images, video, text, color</li>
+          <li><strong>Hearing:</strong> Speech, music, sounds</li>
+          <li><strong>Touch:</strong> Shape, texture, temperature</li>
+          <li><strong>Smell:</strong> Food, objects, locations</li>
+          <li><strong>Taste:</strong> Food, drinks, objects</li>
+        </ul>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">🎮</div>
+        <h3>Applications of Multimedia</h3>
+        <ul>
+          <li><strong>Entertainment:</strong> Video-on-demand, interactive cinema, collaborative games, home shopping</li>
+          <li><strong>Healthcare:</strong> Multimedia patient records, visual medical data sharing, PC conferencing</li>
+          <li><strong>GIS:</strong> Spatial data storage, map zooming/panning, associating media with locations</li>
+          <li><strong>Education:</strong> Lecture archives, video conferencing, intelligent multimedia textbooks</li>
+          <li><strong>Manufacturing/Engineering:</strong> Team collaboration, enhanced CAD/CAM systems</li>
+          <li><strong>Business:</strong> Animated ads, group communication tools, interactive training, simulations</li>
+        </ul>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i5">🏫</div>
+        <h3>Multimedia in Everyday Life</h3>
+        <ul>
+          <li><strong>Schools:</strong> Educational software improves learning (e.g., "Just Grandma and Me")</li>
+          <li><strong>Medical Education:</strong> Learn new technologies and procedures at own pace</li>
+          <li><strong>Home:</strong> TV-based multimedia, family tree software, interactive entertainment</li>
+          <li><strong>Public Places:</strong> Kiosks provide information, help services, public guidance</li>
+          <li><strong>Business:</strong> Presentations, training, marketing, advertising, product demos, databases, catalogs</li>
+        </ul>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">⚡</div>
+        <h3>Flash Multimedia Basics</h3>
+        <p><strong>Main Components:</strong></p>
+        <ul>
+          <li>Toolbar (drawing tools)</li>
+          <li>Frames (time positions in animation)</li>
+          <li>Layers (organize objects)</li>
+          <li>Library (stores reusable assets)</li>
+          <li>Keyframes (change position/size/add objects)</li>
+          <li>ActionScript (programming language)</li>
+        </ul>
+        <p><strong>Publishing:</strong> .fla source → .swf output for web browsers</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i1">✅</div>
+        <h3>User-Friendliness in Multimedia Design</h3>
+        <p>Good multimedia should:</p>
+        <ul>
+          <li>Have acceptable file size</li>
+          <li>Have clear media (audio, images)</li>
+          <li>Be short (less than ~5 minutes)</li>
+          <li>Show one item at a time</li>
+          <li>Use dialogue boxes for engagement</li>
+          <li>Be user-centered (stop, forward, skip, replay)</li>
+          <li>Include metadata (name, subject, keywords)</li>
+          <li>Show progress indicators</li>
+        </ul>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">❌</div>
+        <h3>When NOT to Use Multimedia</h3>
+        <p>Do not use multimedia:</p>
+        <ul>
+          <li>Just because you can</li>
+          <li>Only for the "Wow" factor</li>
+          <li>Without creativity</li>
+        </ul>
+        <p><strong>Key Rule:</strong> Every multimedia element must satisfy a clear identified purpose.</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- ═══ CHAPTER 2 ═══ -->
+  <section class="chapter container" id="ch2">
+    <div class="chapter-header reveal">
+      <div class="chapter-num c2">02</div>
+      <div>
+        <h2 class="chapter-title">Media and Data Streams</h2>
+        <p class="chapter-desc">Components of multimedia systems, compression, graphics, images, audio, video, and data stream characteristics.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card g1 reveal">
+        <div class="card-icon i1">🔧</div>
+        <h3>Components of a Multimedia System</h3>
+        <p><strong>Capture Devices:</strong> Video cameras, microphones, keyboards, mice, graphics tablets, 3D input devices, VR devices</p>
+        <p><strong>Storage Devices:</strong> Hard disks, CD-ROMs, DVD-ROMs</p>
+        <p><strong>Communication Networks:</strong> LANs, Intranets, Internet, high-speed multimedia networks</p>
+        <p><strong>Computer Systems:</strong> Multimedia desktops, workstations, MPEG hardware, video hardware, DSP hardware</p>
+        <p><strong>Display Devices:</strong> Speakers, HDTVs, monitors, color printers</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">📦</div>
+        <h3>Compression</h3>
+        <p>Compression reduces file size for easier storage, faster transmission, and convenient archiving.</p>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+          <li>Easier storage</li>
+          <li>Faster transmission</li>
+          <li>Convenient archiving</li>
+        </ul>
+        <p><strong>Example:</strong> ZIP compression</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">�</div>
+        <h3>Graphics</h3>
+        <p><strong>Characteristics:</strong> Constructed from lines, polygons, circles, curves, arcs</p>
+        <p><strong>Creation:</strong> Graphics editors (Illustrator), Programs (Flash)</p>
+        <p><strong>Advantages:</strong> Editable, revisable, small storage requirements</p>
+        <p><strong>Input Devices:</strong> Keyboard, mouse, trackball, graphics tablet</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">🖼️</div>
+        <h3>Images</h3>
+        <p>Images obtained by scanners and digital cameras.</p>
+        <p><strong>Storage Formats:</strong></p>
+        <ul>
+          <li><strong>1-bit:</strong> Black and White</li>
+          <li><strong>8-bit:</strong> Grayscale, Color map</li>
+          <li><strong>24-bit:</strong> True color</li>
+        </ul>
+        <p><strong>Storage Requirements:</strong></p>
+        <ul>
+          <li>512×512 Grayscale (8-bit): ≈ 0.25 MB</li>
+          <li>512×512 True Color (24-bit): ≈ 0.75 MB</li>
+          <li>Modern Cameras (10+ megapixels): ≈ 29 MB uncompressed</li>
+        </ul>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i5">🎵</div>
+        <h3>Audio</h3>
+        <p>Audio signals are continuous analog signals captured by microphones and digitized.</p>
+        <p><strong>CD Quality Audio:</strong> 16-bit sampling</p>
+        <p><strong>Higher Quality:</strong> 24-bit</p>
+        <p><strong>Storage Requirements:</strong></p>
+        <ul>
+          <li>Mono Audio (1 minute): ≈ 5 MB</li>
+          <li>Stereo Audio (1 minute): ≈ 10 MB</li>
+        </ul>
+        <p><strong>Compression:</strong> MP3</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">🎬</div>
+        <h3>Video</h3>
+        <p>Video captured by cameras and digitized, consisting of a sequence of images.</p>
+        <p><strong>Typical Frame Rates:</strong> 25 fps, 30 fps, 50 fps</p>
+        <p><strong>Storage Requirements:</strong></p>
+        <ul>
+          <li>HD DVD Video (1440×1080): ≈ 112.5 MB per minute</li>
+        </ul>
+        <p><strong>Note:</strong> Compression is essential for video.</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i1">📊</div>
+        <h3>Discrete vs Continuous Media</h3>
+        <p><strong>Static (Discrete) Media:</strong> Time-independent (Text, Graphics, Still images)</p>
+        <p><strong>Continuous Media:</strong> Time-dependent (Audio, Video, Animation)</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">📡</div>
+        <h3>Analog and Digital Signals</h3>
+        <p><strong>Analog Signals:</strong> Continuous signals from real world (microphones, sensors, thermocouples, transducers)</p>
+        <p><strong>Digital Signals:</strong> Discrete signals suitable for computers</p>
+        <p><strong>Note:</strong> Analog signals must be digitized before processing.</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">⏱️</div>
+        <h3>Time Dependency</h3>
+        <p><strong>Asynchronous Transmission:</strong> Data sent as fast as possible, arbitrary delays allowed (good for text/chat)</p>
+        <p><strong>Synchronous Transmission:</strong> Continuous transmission, no start/stop bits, requires temporary buffering</p>
+        <p><strong>Isochronous Transmission:</strong> Designed specifically for multimedia, maintains steady data flow, reduces jitter (audio pops, video freezing)</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">📐</div>
+        <h3>IPB Compression</h3>
+        <p><strong>IPB stands for:</strong> I-frame, P-frame, B-frame</p>
+        <p><strong>Purpose:</strong> Reduce file size while maintaining quality</p>
+        <p><strong>Data Stream Types:</strong></p>
+        <ul>
+          <li><strong>Strongly Regular:</strong> Uncompressed video, CD audio (consistent data rate)</li>
+          <li><strong>Weakly Regular:</strong> Compressed video with large and small packets (moderate variation)</li>
+          <li><strong>Irregular:</strong> Only changes between frames transmitted (highly variable rate)</li>
+        </ul>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i5">🎞️</div>
+        <h3>Logical Data Units (LDUs)</h3>
+        <p>Continuous media represented as Logical Data Units (LDUs).</p>
+        <p><strong>Examples:</strong> Audio samples, video frames</p>
+        <p><strong>Important:</strong> Information defined by both its value AND the time it occurs.</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">📺</div>
+        <h3>Streaming Stored Multimedia</h3>
+        <p><strong>Streaming means:</strong></p>
+        <ul>
+          <li>Media remains stored at server</li>
+          <li>Data transmitted continuously</li>
+          <li>Playback starts before whole file arrives</li>
+        </ul>
+        <p><strong>Features:</strong> VCR-like controls (pause, rewind, fast forward, slider navigation)</p>
+        <p><strong>Acceptable Delays:</strong> Initial startup ≈ 10 seconds, Command response ≈ 1–2 seconds</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- ═══ CHAPTER 3 ═══ -->
+  <section class="chapter container" id="ch3">
+    <div class="chapter-header reveal">
+      <div class="chapter-num c3">03</div>
+      <div>
+        <h2 class="chapter-title">Making Multimedia</h2>
+        <p class="chapter-desc">Multimedia production stages, requirements, hardware, software, creativity, organization, and teamwork.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card g1 reveal">
+        <div class="card-icon i1">🎬</div>
+        <h3>Introduction to Multimedia Production</h3>
+        <p>Multimedia production creates presentations/applications combining text, graphics, audio, video, animation, and interactivity.</p>
+        <p><strong>Requires:</strong> Hardware, Software, Creativity, Organization, Teamwork, Time and money</p>
+        <p>Good multimedia is about planning, skills, and cooperation among team members.</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">📋</div>
+        <h3>Stages of a Multimedia Project</h3>
+        <p><strong>1. Planning and Costing:</strong> First and most important stage. Plan text, graphics, music, audio, video, develop layout and navigation, estimate time and cost, create prototype.</p>
+        <p><strong>2. Designing and Producing:</strong> Perform planned tasks, create multimedia elements, develop final product. Client feedback may require repeated modifications.</p>
+        <p><strong>3. Testing:</strong> Ensure project meets objectives, satisfies client needs, navigation works correctly, multimedia elements function properly.</p>
+        <p><strong>4. Delivering:</strong> Package and deliver final product (CD-ROM or web version, labels, user manuals).</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">💻</div>
+        <h3>Hardware Requirements</h3>
+        <p><strong>Important Platforms:</strong> Macintosh OS and Microsoft Windows</p>
+        <p><strong>Macintosh Advantages:</strong> Better sound/video editing support, Apple hardware handles multimedia more efficiently</p>
+        <p><strong>Both systems provide:</strong> GUI, affordability, available hardware and software</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">🛠️</div>
+        <h3>Software Requirements</h3>
+        <p>Software gives instructions to hardware.</p>
+        <p><strong>Types of Multimedia Software:</strong></p>
+        <ul>
+          <li>Production tools</li>
+          <li>Authoring tools</li>
+        </ul>
+        <p><strong>Basic Multimedia Tool Set:</strong> Authoring systems, text editing, image editing, sound editing, motion video editing software</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i5">🎨</div>
+        <h3>Creativity</h3>
+        <p>Creativity means using knowledge of hardware and software effectively to produce attractive and meaningful multimedia.</p>
+        <p>A creative multimedia developer understands: Technology, Design, Communication</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">📊</div>
+        <h3>Organization</h3>
+        <p>Organization is essential. Developers must prepare:</p>
+        <ul>
+          <li>Detailed outlines</li>
+          <li>Time schedules</li>
+          <li>Budgets</li>
+          <li>Resource lists</li>
+          <li>Skill requirements</li>
+        </ul>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i1">👥</div>
+        <h3>Teamwork in Multimedia</h3>
+        <p>Multimedia production requires cooperation among specialists, shared responsibilities, and communication among team members.</p>
+        <p><strong>Key Idea:</strong> "To make GOOD multimedia you need: Talent, Skill, Organization, Time, Money, Help from others"</p>
+        <p><strong>Therefore:</strong> Teamwork is essential.</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- ═══ CHAPTER 4 ═══ -->
+  <section class="chapter container" id="ch4">
+    <div class="chapter-header reveal">
+      <div class="chapter-num c4">04</div>
+      <div>
+        <h2 class="chapter-title">Multimedia Skills and Training</h2>
+        <p class="chapter-desc">Skills required in multimedia production, responsibilities of team members, and training/background needed for each role.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card g1 reveal">
+        <div class="card-icon i1">�</div>
+        <h3>Project Manager</h3>
+        <p><strong>Responsibilities:</strong> Oversees entire project, handles day-to-day operations, manages budget, builds core team, maintains project vision ("big picture")</p>
+        <p><strong>Required Skills:</strong> Understanding of hardware and software, communication skills, good listening skills, strong people skills</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">🎨</div>
+        <h3>Multimedia Designer</h3>
+        <p><strong>Responsibilities:</strong> Designs overall content and structure, creates project blueprint, determines content/media/interaction/look and feel, coordinates team</p>
+        <p><strong>Types:</strong></p>
+        <ul>
+          <li><strong>Graphic Designers:</strong> Visuals (illustrators, animators, image processing specialists)</li>
+          <li><strong>Instructional Designers:</strong> Subject matter, clear presentation, educational quality</li>
+          <li><strong>Information Designers:</strong> Structuring content, user pathways, feedback systems, selecting suitable media</li>
+        </ul>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">🖥️</div>
+        <h3>Interface Designer</h3>
+        <p><strong>Responsibilities:</strong> Provides user access to media, creates transparent interface, designs windows, icons, controls, backgrounds</p>
+        <p><strong>Goal:</strong> Make system easy to use</p>
+        <p><strong>Required Skills:</strong> Familiarity with multimedia interfaces, knowledge of authoring systems, user testing experience, basic drawing skills</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">✍️</div>
+        <h3>Writers</h3>
+        <p><strong>Responsibilities:</strong> Create characters and actions, define points of view, write interactivity, prepare proposals, write narration scripts, write on-screen text</p>
+        <p><strong>Required Skills:</strong> Marketing background, ability to work under deadlines</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i5">�</div>
+        <h3>Video Specialist</h3>
+        <p><strong>Responsibilities:</strong> Coordinates videographers, sound technicians, lighting designers, set designers, actors, production assistants</p>
+        <p><strong>Required Skills:</strong> QuickTime or MS Video editing, Macromedia Premiere, video special effects tools</p>
+        <p><strong>Goal:</strong> Produce attractive video presentation</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">🎵</div>
+        <h3>Audio Specialist</h3>
+        <p><strong>Responsibilities:</strong> Select music and talent, schedule recording sessions, digitize recordings, edit audio materials</p>
+        <p><strong>Required Skills:</strong> Studio recording experience, MIDI knowledge, sequencing software experience</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i1">�</div>
+        <h3>Multimedia Programmer</h3>
+        <p><strong>Responsibilities:</strong> Integrates multimedia elements into one system, uses programming languages or authoring systems, controls devices and displays</p>
+        <p><strong>Required Skills:</strong> Programming and multimedia languages (C++, Java, Lingo, HTML, VRML, XML), ability to learn new systems quickly</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">🌐</div>
+        <h3>Multimedia Producer for the Web</h3>
+        <p><strong>Responsibilities:</strong> Coordinates web pages, organizes website multimedia</p>
+        <p><strong>Required Skills:</strong> Knowledge of HTML, CGI scripts, Photoshop</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">🔄</div>
+        <h3>Interactive Multimedia Systems</h3>
+        <p><strong>Passive Systems:</strong> Users only click and watch (very limited interaction)</p>
+        <p><strong>Fully Interactive Systems:</strong> Designers must understand user interaction, predict user behavior, design responsive systems</p>
+        <p><strong>Adaptive Systems:</strong> Systems that modify themselves based on user input (e.g., intelligent tutoring systems)</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- ═══ CHAPTER 5 (Sound) ═══ -->
+  <section class="chapter container" id="ch5">
+    <div class="chapter-header reveal">
+      <div class="chapter-num c5">05</div>
+      <div>
+        <h2 class="chapter-title">Sound</h2>
+        <p class="chapter-desc">Sound physics, multimedia system sound, MIDI, digital audio, audio editing, production standards, and integration.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card g1 reveal">
+        <div class="card-icon i1">🔊</div>
+        <h3>Introduction to Sound & Sound Physics</h3>
+        <p>Sound is energy generated by vibrating molecules traveling through the air as pressure waves.</p>
+        <p><strong>Progression:</strong> Vibrations → Pressure Waves → Perception (Ear detects/Brain interprets)</p>
+        <p><strong>Key Characteristics:</strong></p>
+        <ul>
+          <li><strong>Amplitude:</strong> Dictates volume/loudness</li>
+          <li><strong>Frequency/Wavelength:</strong> Determines pitch</li>
+          <li><strong>Harmonics:</strong> Shape distinct "timbre" (why cello ≠ piano on same note)</li>
+        </ul>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">💻</div>
+        <h3>Multimedia System Sound</h3>
+        <p>Multimedia systems use sound to transform user experience from static to dynamic.</p>
+        <p><strong>Macintosh:</strong> Built-in sounds (glass, indigo, laugh), stored as data files or resources</p>
+        <p><strong>Windows:</strong> Windows/Media directory, startup/notification sounds (start.wav, chimes.wav, chord.wav)</p>
+        <p><strong>Computer Standards:</strong> Built-in sound recorders, standard sound cards, audio options in software suites</p>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i3">🎹</div>
+        <h3>MIDI (Musical Instrument Digital Interface)</h3>
+        <p>Developed in 1980s as communications standard. Not digitized sound - music stored in numeric format (like musical score).</p>
+        <p><strong>How it Works:</strong> Lists of mathematical commands sent to playback device</p>
+        <p><strong>System Dependencies:</strong> Highly device-dependent (quality varies by synthesizer)</p>
+        <p><strong>Use Case:</strong> Ideal for instrumental music, not suitable for spoken dialogue</p>
+        <p><strong>Production Toolkit:</strong> Musical knowledge, MIDI keyboard, sound synthesizer, sequencer software</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i4">🎧</div>
+        <h3>Digital Audio</h3>
+        <p>Mathematical representation of analog sound waves as discrete samples.</p>
+        <p><strong>Key Parameters:</strong></p>
+        <ul>
+          <li><strong>Sampling Rate:</strong> Measured in kHz (11.025 kHz, 22.05 kHz, 44.1 kHz CD quality)</li>
+          <li><strong>Sample Size (Bit Depth):</strong> 8-bit or 16-bit (more bits = better quality, larger files)</li>
+          <li><strong>Quantization:</strong> Rounding sampled wave value to nearest integer</li>
+        </ul>
+        <p><strong>Stereo vs Mono:</strong> Mono (1 channel), Stereo (2 channels - L/R, more realistic but double storage)</p>
+        <p><strong>Independence:</strong> Device-independent (sounds identical on all devices)</p>
+      </div>
+
+      <div class="card g2 reveal card-wide">
+        <div class="card-icon i5">⚖️</div>
+        <h3>MIDI vs Digital Audio Comparison</h3>
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>MIDI</th>
+            <th>Digital Audio</th>
+          </tr>
+          <tr>
+            <td>Data Type</td>
+            <td>Musical instructions/scores</td>
+            <td>Actual recorded sound</td>
+          </tr>
+          <tr>
+            <td>Storage Form</td>
+            <td>Numeric commands</td>
+            <td>Discrete samples</td>
+          </tr>
+          <tr>
+            <td>File Size</td>
+            <td>Very small (5-50 KB)</td>
+            <td>Large (50-100 MB)</td>
+          </tr>
+          <tr>
+            <td>Quality Basis</td>
+            <td>Depends on playback device</td>
+            <td>Depends on recording parameters</td>
+          </tr>
+          <tr>
+            <td>Flexibility</td>
+            <td>Highly editable</td>
+            <td>Fixed (editing risks integrity)</td>
+          </tr>
+          <tr>
+            <td>Device Reliance</td>
+            <td>Device-dependent</td>
+            <td>Device-independent</td>
+          </tr>
+          <tr>
+            <td>Best For</td>
+            <td>Synthesized instrumental tracks</td>
+            <td>Voice, speech, acoustic instruments</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card g3 reveal">
+        <div class="card-icon i6">🎛️</div>
+        <h3>Audio Editing & Production Standards</h3>
+        <p><strong>Three Steps:</strong> Balance (quality vs RAM/storage), Set Levels (adjust recording input), Edit (refine/polish)</p>
+        <p><strong>Basic Operations:</strong> Trimming, Splicing & Assembly, Volume Adjustments, Multi-track Editing</p>
+        <p><strong>Production Tools:</strong> QuickTime Player Pro, Sound Forge, Scripting Playback Engines</p>
+        <p><strong>Red Book Standard (ISO 10149):</strong> 44.1 kHz, 16-bit linear, 74 minutes audio, CD-ROM/XA support</p>
+      </div>
+
+      <div class="card g1 reveal">
+        <div class="card-icon i1">📦</div>
+        <h3>Audio Compression Techniques</h3>
+        <p><strong>Lossless (e.g., FLAC):</strong> Reduces space while keeping 100% original quality. Best for archiving and high-end listening.</p>
+        <p><strong>Lossy (e.g., MP3):</strong> Discards less noticeable details for smaller files. Best for streaming and mobile storage.</p>
+        <p><strong>Vaughn's Law:</strong> "Good enough" configuration often beats over-engineering. Focus on meeting project requirements.</p>
+      </div>
+
+      <div class="card g2 reveal">
+        <div class="card-icon i2">🔄</div>
+        <h3>Integration & Workflow Challenges</h3>
+        <p><strong>4-Step Workflow:</strong> Plan → Choose (MIDI/Digital Audio/mix) → Acquire → Edit & Test</p>
+        <p><strong>Delivery:</strong> Download (wait for whole file) vs Streaming (play while downloading)</p>
+        <p><strong>Synchronization Challenges:</strong> Drift (audio/video out of sync), Latency (processing delays)</p>
+        <p><strong>Copyright:</strong> Never use artist's work without legal permission. Options: Original Work (negotiation) or Royalty-Free (one-time purchase)</p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+  </section>
+
+  <footer>
+    <p>Made by : <strong>Rasha Alomari</strong></p>
+  </footer>
+  </div>
+
+  <!-- ═══ EXAM SECTION ═══ -->
+  <section class="exam-container" id="exam-section">
+    <div class="exam-start-screen" id="exam-start">
+      <h2>Multimedia Systems Exam</h2>
+      <p>Test your knowledge with 90 questions covering the Multimedia Systems course. Questions include multiple choice, true/false, and fill-in-the-blank formats.</p>
+      <div class="exam-info">
+        <div class="exam-info-item">
+          <div class="number">90</div>
+          <div class="label">Total Questions</div>
+        </div>
+        <div class="exam-info-item">
+          <div class="number">30</div>
+          <div class="label">Multiple Choice</div>
+        </div>
+        <div class="exam-info-item">
+          <div class="number">30</div>
+          <div class="label">True/False</div>
+        </div>
+        <div class="exam-info-item">
+          <div class="number">30</div>
+          <div class="label">Fill-in-the-Blank</div>
+        </div>
+      </div>
+      <button class="exam-btn exam-btn-primary" onclick="startExam()">Start Exam</button>
+    </div>
+
+    <div id="exam-quiz" style="display: none;">
+      <div class="exam-header">
+        <h2>Multimedia Systems Exam</h2>
+        <p>Answer all 90 questions to complete the exam</p>
+      </div>
+      <div class="exam-progress">
+        <div class="progress-info">
+          Question <strong id="current-question">1</strong> of <strong>90</strong>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 1.11%"></div>
+        </div>
+        <div class="progress-info">
+          Score: <strong id="current-score">0</strong>
+        </div>
+      </div>
+      <div class="question-card" id="question-card">
+        <div class="question-number" id="question-number">Question 1</div>
+        <div class="question-text" id="question-text">Loading question...</div>
+        <div class="options-grid" id="options-grid">
+          <!-- Options will be dynamically inserted here -->
+        </div>
+      </div>
+      <div class="exam-controls">
+        <button class="exam-btn exam-btn-secondary" id="prev-btn" onclick="previousQuestion()" disabled>Previous</button>
+        <button class="exam-btn exam-btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+
+    <div class="results-section" id="exam-results">
+      <div class="score-display" id="final-score">0/80</div>
+      <div class="score-text" id="score-percentage">0%</div>
+      <button class="exam-btn exam-btn-primary" onclick="reviewAnswers()">Review Answers</button>
+      <button class="exam-btn exam-btn-secondary" onclick="restartExam()" style="margin-left: 16px;">Restart Exam</button>
+      <div class="review-section" id="review-section" style="display: none;">
+        <h3>Answer Review</h3>
+        <div id="review-container">
+          <!-- Review items will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made by : <strong>Rasha Alomari</strong></p>
+  </footer>
+  </div>
+
+  <script>
+    (function () {
+      const _p = ['kqRq6', 'UYgh72/g/+uYK4yNwmtegwZXEPGUOEKUZITMbw='];
+      const _s = 'rasha_platform_gate_v1';
+      const _k = 'rpx_auth_token';
+
+      async function _h(t) {
+        const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+        return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+      }
+
+      function _e() {
+        const r = Uint8Array.from(atob(_p.join('')), c => c.charCodeAt(0));
+        return Array.from(r).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      async function _t() {
+        return _h(_e() + _s);
+      }
+
+      function _unlock() {
+        document.getElementById('auth-gate').classList.add('hidden');
+        document.body.classList.remove('auth-locked');
+      }
+
+      async function _check() {
+        const stored = localStorage.getItem(_k);
+        if (stored && stored === await _t()) {
+          _unlock();
+          return true;
+        }
+        return false;
+      }
+
+      document.getElementById('auth-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const input = document.getElementById('auth-input');
+        const err = document.getElementById('auth-error');
+        const entered = await _h(input.value);
+        const expected = _e();
+
+        if (entered === expected) {
+          localStorage.setItem(_k, await _t());
+          err.classList.remove('show');
+          input.value = '';
+          _unlock();
+        } else {
+          err.classList.add('show');
+          input.value = '';
+          input.focus();
+        }
+      });
+
+      _check();
+    })();
+  </script>
+
+  <script>
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('.chapter');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+
+  <script>
+    // Exam Questions Data
+    const examQuestions = [
+      // 30 MCQs
+      { id: 1, type: 'multiple-choice', question: 'What does the term Multimedia mean?', options: ['Only video content', 'Computer-controlled integration of multiple media types', 'Only audio and images', 'Internet applications only'], answer: 'B' },
+      { id: 2, type: 'multiple-choice', question: 'Which of the following is NOT a multimedia element?', options: ['Text', 'Audio', 'Video', 'Electricity'], answer: 'D' },
+      { id: 3, type: 'multiple-choice', question: 'Who proposed the Memex system in 1945?', options: ['Bill Gates', 'Steve Jobs', 'Vannevar Bush', 'Tim Berners-Lee'], answer: 'C' },
+      { id: 4, type: 'multiple-choice', question: 'The Memex inspired which modern technology?', options: ['Operating Systems', 'Hypertext and the World Wide Web', 'Databases', 'Compilers'], answer: 'B' },
+      { id: 5, type: 'multiple-choice', question: 'Which human sense is exploited by images and videos?', options: ['Hearing', 'Touch', 'Sight', 'Taste'], answer: 'C' },
+      { id: 6, type: 'multiple-choice', question: 'Which multimedia application is commonly used in healthcare?', options: ['CAD systems', 'Multimedia patient records', 'Home shopping', 'Family trees'], answer: 'B' },
+      { id: 7, type: 'multiple-choice', question: 'In Flash, frames represent:', options: ['Layers', 'Time positions in animation', 'Audio tracks', 'File formats'], answer: 'B' },
+      { id: 8, type: 'multiple-choice', question: 'Which Flash component stores reusable assets?', options: ['Timeline', 'Toolbar', 'Library', 'Layer'], answer: 'C' },
+      { id: 9, type: 'multiple-choice', question: 'What is the programming language used in Flash?', options: ['Java', 'Python', 'ActionScript', 'C#'], answer: 'C' },
+      { id: 10, type: 'multiple-choice', question: 'What is the Flash source file extension?', options: ['.swf', '.fla', '.exe', '.html'], answer: 'B' },
+      { id: 11, type: 'multiple-choice', question: 'Compression is used to:', options: ['Increase file size', 'Reduce file size', 'Improve monitor resolution', 'Create animation'], answer: 'B' },
+      { id: 12, type: 'multiple-choice', question: 'Which device is used to capture audio?', options: ['Scanner', 'Camera', 'Microphone', 'Printer'], answer: 'C' },
+      { id: 13, type: 'multiple-choice', question: 'Graphics are usually constructed from:', options: ['Frames', 'Pixels only', 'Lines and polygons', 'Audio samples'], answer: 'C' },
+      { id: 14, type: 'multiple-choice', question: 'A 24-bit image is known as:', options: ['Grayscale', 'Binary image', 'True color', 'Indexed color'], answer: 'C' },
+      { id: 15, type: 'multiple-choice', question: 'Which format is commonly used for audio compression?', options: ['JPG', 'PNG', 'MP3', 'GIF'], answer: 'C' },
+      { id: 16, type: 'multiple-choice', question: 'Video consists of:', options: ['Sound waves', 'A sequence of images', 'Text pages', 'Hyperlinks'], answer: 'B' },
+      { id: 17, type: 'multiple-choice', question: 'Which is an example of continuous media?', options: ['Text', 'Graphics', 'Audio', 'Image'], answer: 'C' },
+      { id: 18, type: 'multiple-choice', question: 'Analog signals are:', options: ['Discrete', 'Continuous', 'Binary only', 'Digital only'], answer: 'B' },
+      { id: 19, type: 'multiple-choice', question: 'Isochronous transmission is designed to:', options: ['Increase file size', 'Reduce jitter', 'Create images', 'Compress audio'], answer: 'B' },
+      { id: 20, type: 'multiple-choice', question: 'IPB compression stands for:', options: ['Internet Packet Buffer', 'I-frame, P-frame, B-frame', 'Image Processing Block', 'Internal Program Buffer'], answer: 'B' },
+      { id: 21, type: 'multiple-choice', question: 'Streaming allows users to:', options: ['Download entire file first', 'Watch media before full download completes', 'Compress video', 'Edit videos online'], answer: 'B' },
+      { id: 22, type: 'multiple-choice', question: 'What is the first stage of a multimedia project?', options: ['Testing', 'Delivery', 'Planning and Costing', 'Production'], answer: 'C' },
+      { id: 23, type: 'multiple-choice', question: 'A prototype is:', options: ['Final product', 'Marketing material', 'Sample version used for testing ideas', 'User manual'], answer: 'C' },
+      { id: 24, type: 'multiple-choice', question: 'Which platform is often considered better for multimedia production?', options: ['DOS', 'Linux', 'Macintosh', 'UNIX'], answer: 'C' },
+      { id: 25, type: 'multiple-choice', question: 'Multimedia production requires:', options: ['Technology only', 'Creativity only', 'Teamwork only', 'Hardware, software, creativity, organization, teamwork'], answer: 'D' },
+      { id: 26, type: 'multiple-choice', question: 'Who manages the budget in a multimedia project?', options: ['Programmer', 'Project Manager', 'Audio Specialist', 'Writer'], answer: 'B' },
+      { id: 27, type: 'multiple-choice', question: 'Which team member designs windows, icons, and controls?', options: ['Interface Designer', 'Writer', 'Producer', 'Programmer'], answer: 'A' },
+      { id: 28, type: 'multiple-choice', question: 'MIDI stands for:', options: ['Media Interface Data Integration', 'Musical Instrument Digital Interface', 'Multimedia Instrument Device Interface', 'Music Information Data Input'], answer: 'B' },
+      { id: 29, type: 'multiple-choice', question: 'Which digital audio sampling rate provides CD quality?', options: ['11.025 kHz', '22.05 kHz', '44.1 kHz', '96 kHz'], answer: 'C' },
+      { id: 30, type: 'multiple-choice', question: 'Which audio compression method is lossy?', options: ['FLAC', 'WAV', 'MP3', 'PCM'], answer: 'C' },
+      // 30 True/False
+      { id: 31, type: 'true-false', question: 'Multimedia includes text, audio, video, and graphics.', options: ['True', 'False'], answer: 'True' },
+      { id: 32, type: 'true-false', question: 'Vannevar Bush proposed the Memex after World War II.', options: ['True', 'False'], answer: 'True' },
+      { id: 33, type: 'true-false', question: 'Hyperlinks were inspired by associative trails.', options: ['True', 'False'], answer: 'True' },
+      { id: 34, type: 'true-false', question: 'Taste is one of the senses multimedia may attempt to exploit.', options: ['True', 'False'], answer: 'True' },
+      { id: 35, type: 'true-false', question: 'Graphics are mainly generated using microphones.', options: ['True', 'False'], answer: 'False' },
+      { id: 36, type: 'true-false', question: 'Flash layers help organize different objects.', options: ['True', 'False'], answer: 'True' },
+      { id: 37, type: 'true-false', question: 'A keyframe can change an object\'s position.', options: ['True', 'False'], answer: 'True' },
+      { id: 38, type: 'true-false', question: 'SWF files are Flash source files.', options: ['True', 'False'], answer: 'False' },
+      { id: 39, type: 'true-false', question: 'Multimedia files should always be extremely large.', options: ['True', 'False'], answer: 'False' },
+      { id: 40, type: 'true-false', question: 'Compression helps reduce storage requirements.', options: ['True', 'False'], answer: 'True' },
+      { id: 41, type: 'true-false', question: 'Scanners can be used to obtain images.', options: ['True', 'False'], answer: 'True' },
+      { id: 42, type: 'true-false', question: '24-bit images are grayscale images.', options: ['True', 'False'], answer: 'False' },
+      { id: 43, type: 'true-false', question: 'Audio signals are naturally analog.', options: ['True', 'False'], answer: 'True' },
+      { id: 44, type: 'true-false', question: 'Stereo audio uses two channels.', options: ['True', 'False'], answer: 'True' },
+      { id: 45, type: 'true-false', question: 'Video is made from a sequence of images.', options: ['True', 'False'], answer: 'True' },
+      { id: 46, type: 'true-false', question: 'Text is considered continuous media.', options: ['True', 'False'], answer: 'False' },
+      { id: 47, type: 'true-false', question: 'Audio is time-dependent media.', options: ['True', 'False'], answer: 'True' },
+      { id: 48, type: 'true-false', question: 'Digital signals are continuous signals.', options: ['True', 'False'], answer: 'False' },
+      { id: 49, type: 'true-false', question: 'Isochronous transmission helps reduce jitter.', options: ['True', 'False'], answer: 'True' },
+      { id: 50, type: 'true-false', question: 'Streaming requires the entire file before playback begins.', options: ['True', 'False'], answer: 'False' },
+      { id: 51, type: 'true-false', question: 'Planning and costing is the first stage of multimedia production.', options: ['True', 'False'], answer: 'True' },
+      { id: 52, type: 'true-false', question: 'Testing occurs before designing and producing.', options: ['True', 'False'], answer: 'False' },
+      { id: 53, type: 'true-false', question: 'Teamwork is essential in multimedia development.', options: ['True', 'False'], answer: 'True' },
+      { id: 54, type: 'true-false', question: 'Macintosh is often preferred for multimedia production.', options: ['True', 'False'], answer: 'True' },
+      { id: 55, type: 'true-false', question: 'The Project Manager maintains the big picture of the project.', options: ['True', 'False'], answer: 'True' },
+      { id: 56, type: 'true-false', question: 'Writers create narration scripts and on-screen text.', options: ['True', 'False'], answer: 'True' },
+      { id: 57, type: 'true-false', question: 'MIDI stores actual recorded sound waves.', options: ['True', 'False'], answer: 'False' },
+      { id: 58, type: 'true-false', question: 'Digital audio is device-independent.', options: ['True', 'False'], answer: 'True' },
+      { id: 59, type: 'true-false', question: 'FLAC is a lossless compression format.', options: ['True', 'False'], answer: 'True' },
+      { id: 60, type: 'true-false', question: 'Copyright permission is unnecessary when using an artist\'s original work.', options: ['True', 'False'], answer: 'False' },
+      // 30 Fill-in-the-Blank
+      { id: 61, type: 'multiple-choice', question: 'Multimedia is the computer-controlled integration of text, graphics, audio, video, and ______.', options: ['Hardware', 'Animation', 'Networks', 'Databases'], answer: 'B' },
+      { id: 62, type: 'multiple-choice', question: 'The ______ system was proposed by Vannevar Bush in 1945.', options: ['HyperCard', 'Internet', 'Memex', 'Mosaic'], answer: 'C' },
+      { id: 63, type: 'multiple-choice', question: 'Associative trails inspired modern ______.', options: ['Printers', 'Hyperlinks', 'Keyboards', 'Databases'], answer: 'B' },
+      { id: 64, type: 'multiple-choice', question: 'Images primarily appeal to the sense of ______.', options: ['Hearing', 'Taste', 'Sight', 'Touch'], answer: 'C' },
+      { id: 65, type: 'multiple-choice', question: 'Flash stores reusable assets in the ______.', options: ['Timeline', 'Toolbar', 'Library', 'Frame'], answer: 'C' },
+      { id: 66, type: 'multiple-choice', question: 'Frames represent positions in ______.', options: ['Storage', 'Animation', 'Audio', 'Compression'], answer: 'B' },
+      { id: 67, type: 'multiple-choice', question: 'The Flash programming language is called ______.', options: ['Java', 'Python', 'ActionScript', 'HTML'], answer: 'C' },
+      { id: 68, type: 'multiple-choice', question: 'Flash source files use the extension ______.', options: ['.swf', '.html', '.fla', '.exe'], answer: 'C' },
+      { id: 69, type: 'multiple-choice', question: 'The published Flash output file uses the extension ______.', options: ['.fla', '.jpg', '.swf', '.png'], answer: 'C' },
+      { id: 70, type: 'multiple-choice', question: '______ reduces multimedia file size.', options: ['Animation', 'Compression', 'Streaming', 'Rendering'], answer: 'B' },
+      { id: 71, type: 'multiple-choice', question: 'A ______ captures sound for digital processing.', options: ['Camera', 'Scanner', 'Microphone', 'Printer'], answer: 'C' },
+      { id: 72, type: 'multiple-choice', question: 'Graphics are commonly created using lines, polygons, circles, and ______.', options: ['Curves', 'Speakers', 'Frames', 'Samples'], answer: 'A' },
+      { id: 73, type: 'multiple-choice', question: 'A 24-bit image is called a ______ color image.', options: ['Binary', 'Grayscale', 'True', 'Indexed'], answer: 'C' },
+      { id: 74, type: 'multiple-choice', question: 'One minute of stereo audio requires approximately ______ MB.', options: ['2 MB', '5 MB', '10 MB', '20 MB'], answer: 'C' },
+      { id: 75, type: 'multiple-choice', question: 'Video is a sequence of ______.', options: ['Sounds', 'Images', 'Commands', 'Text Files'], answer: 'B' },
+      { id: 76, type: 'multiple-choice', question: 'Audio and video are examples of ______ media.', options: ['Static', 'Printed', 'Continuous', 'Visual'], answer: 'C' },
+      { id: 77, type: 'multiple-choice', question: 'Text and graphics are examples of ______ media.', options: ['Continuous', 'Static (Discrete)', 'Analog', 'Streaming'], answer: 'B' },
+      { id: 78, type: 'multiple-choice', question: 'Real-world signals are usually ______.', options: ['Digital', 'Binary', 'Analog', 'Compressed'], answer: 'C' },
+      { id: 79, type: 'multiple-choice', question: 'Isochronous transmission helps reduce ______.', options: ['Resolution', 'Jitter', 'Compression', 'Sampling'], answer: 'B' },
+      { id: 80, type: 'multiple-choice', question: 'IPB compression contains I, P, and ______ frames.', options: ['D', 'C', 'B', 'A'], answer: 'C' },
+      { id: 81, type: 'multiple-choice', question: 'Streaming allows playback before the entire file is ______.', options: ['Edited', 'Downloaded', 'Compressed', 'Deleted'], answer: 'B' },
+      { id: 82, type: 'multiple-choice', question: 'The first multimedia project stage is planning and ______.', options: ['Testing', 'Delivery', 'Costing', 'Publishing'], answer: 'C' },
+      { id: 83, type: 'multiple-choice', question: 'A simple sample version of a project is called a ______.', options: ['Package', 'Prototype', 'Template', 'Interface'], answer: 'B' },
+      { id: 84, type: 'multiple-choice', question: 'The two major multimedia platforms are Macintosh and ______.', options: ['Linux', 'UNIX', 'Microsoft Windows', 'DOS'], answer: 'C' },
+      { id: 85, type: 'multiple-choice', question: 'The person responsible for the project budget is the ______.', options: ['Writer', 'Audio Specialist', 'Project Manager', 'Programmer'], answer: 'C' },
+      { id: 86, type: 'multiple-choice', question: 'The ______ Designer creates windows, icons, and controls.', options: ['Information', 'Interface', 'Graphic', 'Instructional'], answer: 'B' },
+      { id: 87, type: 'multiple-choice', question: 'MIDI stands for Musical Instrument Digital ______.', options: ['Input', 'Interface', 'Integration', 'Information'], answer: 'B' },
+      { id: 88, type: 'multiple-choice', question: 'CD-quality audio uses a sampling rate of ______ kHz.', options: ['11.025', '22.05', '44.1', '88.2'], answer: 'C' },
+      { id: 89, type: 'multiple-choice', question: '______ compression keeps 100% of the original audio quality.', options: ['Lossy', 'MP3', 'Lossless (FLAC)', 'MPEG'], answer: 'C' },
+      { id: 90, type: 'multiple-choice', question: 'A one-time purchase audio license is called ______.', options: ['Copyrighted', 'Licensed Streaming', 'Royalty-Free (RF)', 'Public Domain'], answer: 'C' }
+    ];
+
+    // Exam State
+    let currentQuestionIndex = 0;
+    let userAnswers = new Array(90).fill(null);
+    let score = 0;
+
+    // Start Exam
+    function startExam() {
+      document.getElementById('exam-start').style.display = 'none';
+      document.getElementById('exam-quiz').style.display = 'block';
+      document.getElementById('exam-results').classList.remove('show');
+      currentQuestionIndex = 0;
+      userAnswers = new Array(90).fill(null);
+      score = 0;
+      loadQuestion(0);
+    }
+
+    // Load Question
+    function loadQuestion(index) {
+      const question = examQuestions[index];
+      document.getElementById('question-number').textContent = `Question ${question.id}`;
+      document.getElementById('question-text').textContent = question.question;
+      document.getElementById('current-question').textContent = question.id;
+      document.getElementById('current-score').textContent = score;
+      
+      const progressPercent = ((index + 1) / 90) * 100;
+      document.getElementById('progress-fill').style.width = progressPercent + '%';
+      
+      const optionsGrid = document.getElementById('options-grid');
+      optionsGrid.innerHTML = '';
+      
+      const optionLabels = question.type === 'multiple-choice' ? ['A', 'B', 'C', 'D'] : ['A', 'B'];
+      
+      question.options.forEach((option, i) => {
+        const label = document.createElement('label');
+        label.className = 'option-label';
+        if (userAnswers[index] === optionLabels[i]) {
+          label.classList.add('selected');
+        }
+        
+        label.innerHTML = `
+          <input type="radio" name="option" value="${optionLabels[i]}" class="option-input" ${userAnswers[index] === optionLabels[i] ? 'checked' : ''}>
+          <div class="option-marker">${optionLabels[i]}</div>
+          <div class="option-text">${option}</div>
+        `;
+        
+        label.addEventListener('change', () => selectOption(optionLabels[i]));
+        optionsGrid.appendChild(label);
+      });
+      
+      // Update navigation buttons
+      document.getElementById('prev-btn').disabled = index === 0;
+      document.getElementById('next-btn').textContent = index === 89 ? 'Submit' : 'Next';
+    }
+
+    // Select Option
+    function selectOption(value) {
+      userAnswers[currentQuestionIndex] = value;
+      
+      // Update visual selection
+      const labels = document.querySelectorAll('.option-label');
+      labels.forEach(label => {
+        label.classList.remove('selected');
+        if (label.querySelector('input').value === value) {
+          label.classList.add('selected');
+        }
+      });
+      
+      // Recalculate score
+      calculateScore();
+      document.getElementById('current-score').textContent = score;
+    }
+
+    // Calculate Score
+    function calculateScore() {
+      score = 0;
+      for (let i = 0; i < 90; i++) {
+        let userAnswer = userAnswers[i];
+        let correctAnswer = examQuestions[i].answer;
+        
+        // For true/false questions, convert A/B to True/False for comparison
+        if (examQuestions[i].type === 'true-false') {
+          if (userAnswer === 'A') userAnswer = 'True';
+          if (userAnswer === 'B') userAnswer = 'False';
+        }
+        
+        if (userAnswer === correctAnswer) {
+          score++;
+        }
+      }
+    }
+
+    // Next Question
+    function nextQuestion() {
+      if (currentQuestionIndex < 89) {
+        currentQuestionIndex++;
+        loadQuestion(currentQuestionIndex);
+      } else {
+        submitExam();
+      }
+    }
+
+    // Previous Question
+    function previousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion(currentQuestionIndex);
+      }
+    }
+
+    // Submit Exam
+    function submitExam() {
+      calculateScore();
+      document.getElementById('exam-quiz').style.display = 'none';
+      document.getElementById('exam-results').classList.add('show');
+      document.getElementById('final-score').textContent = `${score}/90`;
+      document.getElementById('score-percentage').textContent = `${Math.round((score / 90) * 100)}%`;
+      document.getElementById('review-section').style.display = 'none';
+    }
+
+    // Review Answers
+    function reviewAnswers() {
+      const reviewSection = document.getElementById('review-section');
+      const reviewContainer = document.getElementById('review-container');
+      reviewSection.style.display = 'block';
+      reviewContainer.innerHTML = '';
+      
+      examQuestions.forEach((question, index) => {
+        let userAnswer = userAnswers[index];
+        let correctAnswer = question.answer;
+        
+        // For true/false questions, convert A/B to True/False for display and comparison
+        if (question.type === 'true-false') {
+          let displayUserAnswer = userAnswer;
+          if (userAnswer === 'A') displayUserAnswer = 'True';
+          if (userAnswer === 'B') displayUserAnswer = 'False';
+          
+          const isCorrect = displayUserAnswer === correctAnswer;
+          const reviewItem = document.createElement('div');
+          reviewItem.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+          
+          reviewItem.innerHTML = `
+            <div class="review-question">${index + 1}. ${question.question}</div>
+            <div class="review-answer ${isCorrect ? 'correct' : 'incorrect'}">
+              Your answer: <span>${displayUserAnswer || 'Not answered'}</span> ${isCorrect ? '✓' : '✗'}
+            </div>
+            ${!isCorrect ? `<div class="review-answer correct">Correct answer: <span>${correctAnswer}</span></div>` : ''}
+          `;
+          
+          reviewContainer.appendChild(reviewItem);
+        } else {
+          // Multiple choice questions
+          const isCorrect = userAnswer === correctAnswer;
+          const reviewItem = document.createElement('div');
+          reviewItem.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+          
+          reviewItem.innerHTML = `
+            <div class="review-question">${index + 1}. ${question.question}</div>
+            <div class="review-answer ${isCorrect ? 'correct' : 'incorrect'}">
+              Your answer: <span>${userAnswer || 'Not answered'}</span> ${isCorrect ? '✓' : '✗'}
+            </div>
+            ${!isCorrect ? `<div class="review-answer correct">Correct answer: <span>${correctAnswer}</span></div>` : ''}
+          `;
+          
+          reviewContainer.appendChild(reviewItem);
+        }
+      });
+      
+      reviewSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Restart Exam
+    function restartExam() {
+      document.getElementById('exam-results').classList.remove('show');
+      document.getElementById('exam-start').style.display = 'block';
+      document.getElementById('review-section').style.display = 'none';
+      currentQuestionIndex = 0;
+      userAnswers = new Array(80).fill(null);
+      score = 0;
+    }
+  </script>
+</body>
+</html>
